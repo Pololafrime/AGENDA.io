@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly To-Do List</title>
+    <title>Liste de Tâches Hebdomadaire</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,30 +24,42 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
-        .day {
+        .jour {
             margin-bottom: 20px;
         }
-        .day h2 {
+        .jour h2 {
             color: #555;
             border-bottom: 1px solid #ddd;
             padding-bottom: 5px;
         }
-        .task {
+        .tache {
             display: flex;
             align-items: center;
             margin: 10px 0;
         }
-        .task input {
+        .tache input {
             margin-right: 10px;
         }
-        .progress-bar {
+        .tache button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .tache button:hover {
+            background-color: #c0392b;
+        }
+        .barre-de-progression {
             width: 100%;
             background: #ddd;
             border-radius: 10px;
             overflow: hidden;
             margin: 20px 0;
         }
-        .progress-bar-fill {
+        .barre-de-progression-remplie {
             height: 20px;
             background: #4caf50;
             width: 0;
@@ -56,20 +68,20 @@
             line-height: 20px;
             transition: width 0.3s;
         }
-        .add-task {
+        .ajouter-tache {
             margin-top: 10px;
         }
-        .add-task input[type="text"] {
+        .ajouter-tache input[type="text"] {
             width: calc(100% - 110px);
             padding: 8px;
             margin-right: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-        .add-task input[type="color"] {
+        .ajouter-tache input[type="color"] {
             margin-right: 10px;
         }
-        .add-task button {
+        .ajouter-tache button {
             padding: 8px 15px;
             background-color: #4caf50;
             color: white;
@@ -77,107 +89,154 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        .add-task button:hover {
+        .ajouter-tache button:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <h1>Weekly To-Do List</h1>
+    <h1>Liste de Tâches Hebdomadaire</h1>
     <div class="todo-list">
-        <div class="progress-bar">
-            <div class="progress-bar-fill" id="progressBar">0%</div>
+        <div class="barre-de-progression">
+            <div class="barre-de-progression-remplie" id="barreDeProgression">0%</div>
         </div>
 
-        <div class="day" id="monday">
-            <h2>Monday</h2>
-            <div class="tasks"></div>
-            <div class="add-task">
-                <input type="text" placeholder="Add a new task" class="task-input">
-                <input type="color" class="color-input">
-                <button onclick="addTask('monday')">Add</button>
+        <div class="jour" id="lundi">
+            <h2>Lundi</h2>
+            <div class="taches"></div>
+            <div class="ajouter-tache">
+                <input type="text" placeholder="Ajouter une nouvelle tâche" class="input-tache">
+                <input type="color" class="input-couleur">
+                <button onclick="ajouterTache('lundi')">Ajouter</button>
             </div>
         </div>
 
-        <div class="day" id="tuesday">
-            <h2>Tuesday</h2>
-            <div class="tasks"></div>
-            <div class="add-task">
-                <input type="text" placeholder="Add a new task" class="task-input">
-                <input type="color" class="color-input">
-                <button onclick="addTask('tuesday')">Add</button>
+        <div class="jour" id="mardi">
+            <h2>Mardi</h2>
+            <div class="taches"></div>
+            <div class="ajouter-tache">
+                <input type="text" placeholder="Ajouter une nouvelle tâche" class="input-tache">
+                <input type="color" class="input-couleur">
+                <button onclick="ajouterTache('mardi')">Ajouter</button>
             </div>
         </div>
 
-        <div class="day" id="wednesday">
-            <h2>Wednesday</h2>
-            <div class="tasks"></div>
-            <div class="add-task">
-                <input type="text" placeholder="Add a new task" class="task-input">
-                <input type="color" class="color-input">
-                <button onclick="addTask('wednesday')">Add</button>
+        <div class="jour" id="mercredi">
+            <h2>Mercredi</h2>
+            <div class="taches"></div>
+            <div class="ajouter-tache">
+                <input type="text" placeholder="Ajouter une nouvelle tâche" class="input-tache">
+                <input type="color" class="input-couleur">
+                <button onclick="ajouterTache('mercredi')">Ajouter</button>
             </div>
         </div>
 
-        <div class="day" id="thursday">
-            <h2>Thursday</h2>
-            <div class="tasks"></div>
-            <div class="add-task">
-                <input type="text" placeholder="Add a new task" class="task-input">
-                <input type="color" class="color-input">
-                <button onclick="addTask('thursday')">Add</button>
+        <div class="jour" id="jeudi">
+            <h2>Jeudi</h2>
+            <div class="taches"></div>
+            <div class="ajouter-tache">
+                <input type="text" placeholder="Ajouter une nouvelle tâche" class="input-tache">
+                <input type="color" class="input-couleur">
+                <button onclick="ajouterTache('jeudi')">Ajouter</button>
             </div>
         </div>
 
-        <div class="day" id="friday">
-            <h2>Friday</h2>
-            <div class="tasks"></div>
-            <div class="add-task">
-                <input type="text" placeholder="Add a new task" class="task-input">
-                <input type="color" class="color-input">
-                <button onclick="addTask('friday')">Add</button>
+        <div class="jour" id="vendredi">
+            <h2>Vendredi</h2>
+            <div class="taches"></div>
+            <div class="ajouter-tache">
+                <input type="text" placeholder="Ajouter une nouvelle tâche" class="input-tache">
+                <input type="color" class="input-couleur">
+                <button onclick="ajouterTache('vendredi')">Ajouter</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        const progressBar = document.getElementById('progressBar');
+        const barreDeProgression = document.getElementById('barreDeProgression');
 
-        function updateProgressBar() {
-            const checkboxes = document.querySelectorAll('.task-checkbox');
-            const totalTasks = checkboxes.length;
-            const completedTasks = document.querySelectorAll('.task-checkbox:checked').length;
-            const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-            progressBar.style.width = progress + '%';
-            progressBar.textContent = progress + '%';
+        function sauvegarderTaches() {
+            const taches = {};
+            document.querySelectorAll('.jour').forEach(jour => {
+                const jourId = jour.id;
+                taches[jourId] = [];
+                jour.querySelectorAll('.tache').forEach(tache => {
+                    const checkbox = tache.querySelector('input[type="checkbox"]');
+                    const texte = tache.querySelector('span').textContent;
+                    const couleur = tache.querySelector('span').style.color;
+                    taches[jourId].push({
+                        texte,
+                        couleur,
+                        fait: checkbox.checked
+                    });
+                });
+            });
+            localStorage.setItem('taches', JSON.stringify(taches));
         }
 
-        function addTask(dayId) {
-            const dayElement = document.getElementById(dayId);
-            const taskInput = dayElement.querySelector('.task-input');
-            const colorInput = dayElement.querySelector('.color-input');
-            const tasksContainer = dayElement.querySelector('.tasks');
+        function chargerTaches() {
+            const taches = JSON.parse(localStorage.getItem('taches')) || {};
+            Object.keys(taches).forEach(jourId => {
+                const jourElement = document.getElementById(jourId);
+                const tachesContainer = jourElement.querySelector('.taches');
+                taches[jourId].forEach(tache => {
+                    const tacheElement = creerTacheElement(tache.texte, tache.couleur, tache.fait);
+                    tachesContainer.appendChild(tacheElement);
+                });
+            });
+            mettreAJourBarreDeProgression();
+        }
 
-            const taskText = taskInput.value.trim();
-            const taskColor = colorInput.value;
+        function mettreAJourBarreDeProgression() {
+            const checkboxes = document.querySelectorAll('.tache input[type="checkbox"]');
+            const totalTaches = checkboxes.length;
+            const tachesTerminees = document.querySelectorAll('.tache input[type="checkbox"]:checked').length;
+            const progression = totalTaches > 0 ? Math.round((tachesTerminees / totalTaches) * 100) : 0;
+            barreDeProgression.style.width = progression + '%';
+            barreDeProgression.textContent = progression + '%';
+        }
 
-            if (taskText) {
-                const taskElement = document.createElement('div');
-                taskElement.classList.add('task');
-                taskElement.innerHTML = `
-                    <input type="checkbox" class="task-checkbox" onchange="updateProgressBar()">
-                    <span style="color: ${taskColor}">${taskText}</span>
-                `;
-                tasksContainer.appendChild(taskElement);
-                taskInput.value = '';
-                updateProgressBar();
+        function creerTacheElement(texte, couleur, fait = false) {
+            const tacheElement = document.createElement('div');
+            tacheElement.classList.add('tache');
+            tacheElement.innerHTML = `
+                <input type="checkbox" class="checkbox-tache" ${fait ? 'checked' : ''} onchange="mettreAJourBarreDeProgression(); sauvegarderTaches()">
+                <span style="color: ${couleur}">${texte}</span>
+                <button onclick="supprimerTache(this)">Supprimer</button>
+            `;
+            return tacheElement;
+        }
+
+        function ajouterTache(jourId) {
+            const jourElement = document.getElementById(jourId);
+            const inputTexte = jourElement.querySelector('.input-tache');
+            const inputCouleur = jourElement.querySelector('.input-couleur');
+            const tachesContainer = jourElement.querySelector('.taches');
+
+            const texte = inputTexte.value.trim();
+            const couleur = inputCouleur.value;
+
+            if (texte) {
+                const tacheElement = creerTacheElement(texte, couleur);
+                tachesContainer.appendChild(tacheElement);
+                inputTexte.value = '';
+                sauvegarderTaches();
+                mettreAJourBarreDeProgression();
             }
         }
 
-        // Initialize progress bar
-        updateProgressBar();
+        function supprimerTache(button) {
+            const tacheElement = button.parentElement;
+            tacheElement.remove();
+            sauvegarderTaches();
+            mettreAJourBarreDeProgression();
+        }
+
+        // Charger les tâches au démarrage
+        chargerTaches();
     </script>
 </body>
 </html>
+
 
